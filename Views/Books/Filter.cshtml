@@ -1,0 +1,50 @@
+@model List<MiniLibrary.Web.ViewModels.BookListItemViewModel>
+
+<h2>🔍 Filter Books by Relationship</h2>
+
+<form method="get" action="/Books/Filter" style="background: #fdfaf4; padding: 20px; border-radius: 8px; border: 1px solid #eddcc6; display: flex; gap: 15px; align-items: flex-end; margin-bottom: 20px;">
+    <div>
+        <label style="display:block; font-size:0.9rem; font-weight:bold; margin-bottom:5px;">Category ID (1: AM, 2: CS)</label>
+        <input type="number" name="categoryId" class="form-control" style="width:140px;"/>
+    </div>
+    <div>
+        <label style="display:block; font-size:0.9rem; font-weight:bold; margin-bottom:5px;">Min Price</label>
+        <input type="number" name="minPrice" class="form-control" style="width:140px;"/>
+    </div>
+    <div>
+        <label style="display:block; font-size:0.9rem; font-weight:bold; margin-bottom:5px;">Max Price</label>
+        <input type="number" name="maxPrice" class="form-control" style="width:140px;"/>
+    </div>
+    <button type="submit" class="btn-submit" style="width:auto; padding: 10px 25px;">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Copies</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null && Model.Any()) {
+            @foreach (var item in Model) {
+                <tr>
+                    <td><strong>@item.BookCode</strong></td>
+                    <td>@item.Title</td>
+                    <td>@item.Author</td>
+                    <td>@item.CategoryName</td>
+                    <td>@item.RentalPrice.ToString("N0") VND</td>
+                    <td>@item.AvailableCopies</td>
+                    <td><span class="badge @item.BadgeClass">@item.StockStatus</span></td>
+                </tr>
+            }
+        } else {
+            <tr><td colspan="7" style="text-align:center; color:#8c816f;">No data match criteria.</td></tr>
+        }
+    </tbody>
+</table>

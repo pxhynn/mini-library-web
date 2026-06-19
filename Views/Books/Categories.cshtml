@@ -1,0 +1,41 @@
+@model List<MiniLibrary.Web.Models.Category>
+
+<div class="category-relationship-page">
+    <h2>🔗 Category & Book Relationship</h2>
+    <p style="color: #8c816f; margin-bottom: 20px;">
+        Demonstrating the One-to-Many (1-N) relationship: A single category can contain multiple independent book entries.
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Books Checklist</th>
+                <th>Relationship</th>
+                <th>DbSet</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td><strong>@category.Name</strong></td>
+                    <td>
+                        @if (category.Books != null && category.Books.Any())
+                        {
+                            <span>@string.Join(", ", category.Books.Select(b => b.Title))</span>
+                        }
+                        else
+                        {
+                            <span style="color: #b06000; font-style: italic;">No books available</span>
+                        }
+                    </td>
+                    <td><span class="badge badge-warning">1 - Many</span></td>
+                    <td><code>Categories</code></td>
+                    <td><a href="/Books/Filter?categoryId=@category.Id" class="badge badge-success" style="text-decoration:none;">View Filter</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

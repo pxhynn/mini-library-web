@@ -1,0 +1,94 @@
+@model List<MiniLibrary.Web.ViewModels.BookListItemViewModel>
+
+@{
+    ViewData["Title"] = "Book Catalog Dashboard";
+}
+
+<div class="catalog-dashboard">
+    <div class="page-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <div>
+            <h2 class="page-title" style="font-size: 2.2rem; color: #5c554a; margin: 0 0 5px 0;">📚 Book Catalog Dashboard</h2>
+            <p class="page-description" style="color: #8c816f; margin: 0;">
+                Real-time data synchronization across the 4-layer architecture utilizing the <code>AsNoTracking()</code> optimization mechanism.
+            </p>
+        </div>
+    </div>
+
+    <div class="dashboard-section-title" style="font-size: 1.2rem; font-weight: bold; color: #6b6152; margin-bottom: 15px; border-bottom: 2px solid #eddcc6; padding-bottom: 5px;">
+        📊 System Data Coordination Framework
+    </div>
+    
+    <div class="flow-dashboard-container" style="display: flex; align-items: center; justify-content: space-between; background-color: #fdfaf4; border: 1px dashed #eddcc6; border-radius: 12px; padding: 25px; margin-bottom: 40px; box-shadow: 0 2px 5px rgba(0,0,0,0.01);">
+        <div class="flow-node" style="flex: 1; background: #ffffff; border: 2px solid #8c7a6b; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+            <strong style="color: #5c554a; display: block; font-size: 1.05rem;">Controller</strong>
+            <span style="font-size: 0.8rem; color: #8c816f; display:block; margin-top:4px;">Handles HTTP Request</span>
+        </div>
+        <div class="flow-arrow" style="padding: 0 15px; color: #8c7a6b; font-weight: bold; font-size: 1.2rem;">➔</div>
+        <div class="flow-node" style="flex: 1; background: #ffffff; border: 2px solid #8c7a6b; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+            <strong style="color: #5c554a; display: block; font-size: 1.05rem;">Service Layer</strong>
+            <span style="font-size: 0.8rem; color: #8c816f; display:block; margin-top:4px;">Executes Business Logic</span>
+        </div>
+        <div class="flow-arrow" style="padding: 0 15px; color: #8c7a6b; font-weight: bold; font-size: 1.2rem;">➔</div>
+        <div class="flow-node" style="flex: 1; background: #ffffff; border: 2px solid #8c7a6b; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+            <strong style="color: #5c554a; display: block; font-size: 1.05rem;">Repository</strong>
+            <span style="font-size: 0.8rem; color: #8c816f; display:block; margin-top:4px;">Abstracts Queries</span>
+        </div>
+        <div class="flow-arrow" style="padding: 0 15px; color: #8c7a6b; font-weight: bold; font-size: 1.2rem;">➔</div>
+        <div class="flow-node" style="flex: 1; background: #ffffff; border: 2px solid #8c7a6b; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+            <strong style="color: #5c554a; display: block; font-size: 1.05rem;">DbContext (EF)</strong>
+            <span style="font-size: 0.8rem; color: #8c816f; display:block; margin-top:4px;">Maps Entities</span>
+        </div>
+        <div class="flow-arrow" style="padding: 0 15px; color: #8c7a6b; font-weight: bold; font-size: 1.2rem;">➔</div>
+        <div class="flow-node" style="flex: 1; background: #fdfbf7; border: 2px dashed #c2410c; border-radius: 8px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+            <strong style="color: #c2410c; display: block; font-size: 1.05rem;">Database</strong>
+            <span style="font-size: 0.8rem; color: #8c816f; display:block; margin-top:4px;">SQL Server 20</span>
+        </div>
+    </div>
+
+    <div class="dashboard-section-title" style="font-size: 1.2rem; font-weight: bold; color: #6b6152; margin-bottom: 5px; border-bottom: 2px solid #eddcc6; padding-bottom: 5px;">
+        📚 Current Library Book Inventory
+    </div>
+    
+    <div class="alert-info" style="background-color: #eef2f3; color: #475569; padding: 12px 18px; border-radius: 8px; margin-top: 15px; font-size: 0.95rem; border-left: 4px solid #8c7a6b; font-weight: 500;">
+        ℹ️ System Record: A total of <strong>@Model.Count books</strong> are currently managed and operational.
+    </div>
+
+    <table class="table" style="width: 100%; border-collapse: collapse; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.02); margin-top: 15px;">
+        <thead>
+            <tr style="background-color: #fdfaf4; border-bottom: 1px solid #f0eae1;">
+                <th style="padding: 14px; text-align: left; color: #6b6152; font-weight: 600;">Book Code</th>
+                <th style="padding: 14px; text-align: left; color: #6b6152; font-weight: 600;">Title</th>
+                <th style="padding: 14px; text-align: left; color: #6b6152; font-weight: 600;">Author</th>
+                <th style="padding: 14px; text-align: left; color: #6b6152; font-weight: 600;">Category</th>
+                <th style="padding: 14px; text-align: left; color: #6b6152; font-weight: 600;">Rental Price</th>
+                <th style="padding: 14px; text-align: left; color: #6b6152; font-weight: 600;">Available Copies</th>
+                <th style="padding: 14px; text-align: left; color: #6b6152; font-weight: 600;">Visual Status</th>
+                <th style="padding: 14px; text-align: center; color: #6b6152; font-weight: 600;">Action</th> </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="border-bottom: 1px solid #f5ede2; transition: background 0.2s;">
+                    <td style="padding: 14px; font-family: 'Consolas', monospace;"><strong>@item.BookCode</strong></td>
+                    <td style="padding: 14px; color: #3e3a35; font-weight: 600;">@item.Title</td>
+                    <td style="padding: 14px; color: #64748b;">@item.Author</td>
+                    <td style="padding: 14px; color: #7c7261;"><span style="background: #f4efe6; padding: 4px 10px; border-radius: 4px; font-size: 0.85rem;">@item.CategoryName</span></td>
+                    <td style="padding: 14px; font-weight: bold; color: #c2410c;">@item.RentalPrice.ToString("N0") VND</td>
+                    <td style="padding: 14px; text-align: center; font-weight: bold;">@item.AvailableCopies units</td>
+                    <td style="padding: 14px;">
+                        <span class="badge @item.BadgeClass" style="padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; display: inline-block;">
+                            @item.StockStatus
+                        </span>
+                    </td>
+                    <td style="padding: 14px; text-align: center;">
+                        <a href="/Books/Detail/@item.Id" class="badge badge-success" style="text-decoration: none; background-color: #e2e8f0; color: #475569; border: 1px solid #cbd5e1;">Detail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div style="margin-top: 25px; text-align: right;">
+        <a href="/Books/Stats" class="btn-submit" style="text-decoration: none; display: inline-block; width: auto; padding: 12px 30px; background-color: #8c7a6b; font-weight: bold; border-radius: 6px; color: white;">📊 View Inventory Analytics Dashboard</a>
+    </div>
+</div>

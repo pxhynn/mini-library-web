@@ -1,0 +1,46 @@
+<div class="data-health-page">
+    <h2>🩺 EF Core Data Health Dashboard</h2>
+    <p style="color: #8c816f; margin-bottom: 20px;">Màn hình kiểm tra và đánh giá trạng thái vận hành của tầng dữ liệu Data Layer.</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Check</th>
+                <th>Expected</th>
+                <th>Actual</th>
+                <th>Status</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Migration</strong></td>
+                <td>Applied</td>
+                <td>InitialCreate & SeedInitialData</td>
+                <td><span class="badge badge-success">OK</span></td>
+                <td>DB up to date (SQL Server 20)</td>
+            </tr>
+            <tr>
+                <td><strong>Seed Data</strong></td>
+                <td>&gt;= 3 rows</td>
+                <td>@ViewBag.TotalBooks books registered</td>
+                <td><span class="badge badge-success">OK</span></td>
+                <td>Ready for testing</td>
+            </tr>
+            <tr>
+                <td><strong>No-Tracking</strong></td>
+                <td>List only</td>
+                <td>AsNoTracking() Enabled</td>
+                <td><span class="badge badge-success">OK</span></td>
+                <td>Read optimized successfully</td>
+            </tr>
+            <tr>
+                <td><strong>Transaction</strong></td>
+                <td>Borrow save</td>
+                <td>Commit / Rollback</td>
+                <td><span class="badge badge-success">OK</span></td>
+                <td>Safe multi-step write execution</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
