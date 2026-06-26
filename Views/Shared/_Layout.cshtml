@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Library Portal</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-box">
+            <a class="brand" href="/">📚 MiniLibrary System</a>
+            <nav class="nav-links">
+                <a href="/Books">Book Catalog</a>
+                <a href="/Books/Categories">Categories</a>
+                <a href="/Books/Filter">Search</a>
+                <a href="/Borrow/Create">Borrow Book</a>
+                <a href="/Borrow/History">History Ledger</a>
+                <a href="/Books/DataHealth">Data Health</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container content">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert-success">@TempData["SuccessMessage"]</div>
+        }
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            &copy; 2026 - Mini Library Platform
+        </div>
+    </footer>
+</body>
+</html>

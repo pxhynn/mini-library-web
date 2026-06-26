@@ -1,0 +1,41 @@
+@model MiniLibrary.Web.ViewModels.BorrowCreateViewModel
+
+<div class="form-card" style="background: #ffffff; max-width: 600px; margin: 40px auto; padding: 30px; border-radius: 12px; border: 1px solid #eddcc6; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+    <h3 style="text-align: center; margin-top: 0; color: #5c554a; font-size: 1.8rem;">📖 Create Borrow Ticket</h3>
+    <p style="font-size:0.85rem; color:#8c816f; text-align:center; margin-bottom: 25px;">
+        Asynchronous processing secured via Database Transactions. Voucher IDs are self-incrementing.
+    </p>
+    
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="badge badge-danger" style="display:block; margin-bottom:20px; border-radius:6px; padding:12px; text-align:left; background-color: #fce8e6; color: #c5221f;"></div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label asp-for="BorrowerName" style="display: block; font-weight: 600; color: #6b6152; margin-bottom: 8px;">Full Name</label>
+            <input asp-for="BorrowerName" class="form-control" type="text" placeholder="" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" required />
+            <span asp-validation-for="BorrowerName" style="color: #c5221f; font-size: 0.8rem; display: block; margin-top: 4px;"></span>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label asp-for="BorrowerEmail" style="display: block; font-weight: 600; color: #6b6152; margin-bottom: 8px;">Email Address</label>
+            <input asp-for="BorrowerEmail" class="form-control" type="email" placeholder="" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" required />
+            <span asp-validation-for="BorrowerEmail" style="color: #c5221f; font-size: 0.8rem; display: block; margin-top: 4px;"></span>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label asp-for="BookId" style="display: block; font-weight: 600; color: #6b6152; margin-bottom: 8px;">Select Target Book From Inventory</label>
+            <select asp-for="BookId" asp-items="Model.BookOptions" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; background-color: #fff;" required>
+                <option value="">-- Choose a book title --</option>
+            </select>
+            <span asp-validation-for="BookId" style="color: #c5221f; font-size: 0.8rem; display: block; margin-top: 4px;"></span>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label asp-for="Quantity" style="display: block; font-weight: 600; color: #6b6152; margin-bottom: 8px;">Quantity to Borrow</label>
+            <input asp-for="Quantity" class="form-control" type="number" min="1" placeholder="Specify number of copies" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px;" required />
+            <span asp-validation-for="Quantity" style="color: #c5221f; font-size: 0.8rem; display: block; margin-top: 4px;"></span>
+        </div>
+
+        <button type="submit" class="btn-submit" style="width: 100%; padding: 12px; background-color: #8c7a6b; color: #fff; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 1.05rem;">Confirm Borrow Request</button>
+    </form>
+</div>
